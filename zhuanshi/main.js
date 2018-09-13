@@ -174,8 +174,12 @@ function initSetUnit_3(){
 function initSetUnit_2(){
     var ret = true;
     var obj = null;
+    if($('.input.w250').val()=='' && $('.modal-open').length==0){
+        $('.btn:contains("添加推广宝贝")')[0].click();
+    }
     if($('.input.w250').val()=='' && $('.modal-open').length>0){
-        obj = $('table[bx-name="tables"]').find('.btn:contains("推广")')[5];
+        obj = toTitle();
+        //obj = $('table[bx-name="tables"]').find('.btn:contains("推广")')[5];
     }
     if(obj){
         obj.click();
@@ -185,15 +189,7 @@ function initSetUnit_2(){
     return ret;
 }
 function initSetUnit_1(){
-    var ret = true;
-    if($('.input.w250').val()=='' && $('.modal-open').length==0){
-        $('.btn:contains("添加推广宝贝")').each(function(){
-            this.click();
-            console.log('initSetUnit_1');
-            ret = false;
-            return false;
-        });
-    }
+    var ret = false;
     return ret;
 }
 var i1 = true,i2 = true,i3 = true,i4 = true,i5 = true,i6 = true,i7 = true;
@@ -231,35 +227,81 @@ function initCy(){
     var url = 'step=4';
     if(currUrl().indexOf(url) > -1 && $('.btn.btn-blue.mr20:contains("下一步，计划创建完成")').length > 0){
         $('.btn.btn-blue.mr20:contains("下一步，计划创建完成")')[0].click();
+        console.log("initCy.下一步，计划创建完成");
     }
     if(currUrl().indexOf(url) > -1 && $('.btn.btn-blue.mr20:contains("下一步，单元创建完成")').length > 0){
         $('.btn.btn-blue.mr20:contains("下一步，单元创建完成")')[0].click();
+        console.log("initCy.下一步，单元创建完成");
     }
+    return false;
+}
+function initCy2(){
     var url = 'step=5';
     if(currUrl().indexOf(url) > -1 && $('.btn.mw110:contains("新建其它计划")').length > 0){
         $('.btn.mw110:contains("新建其它计划")')[0].click();
+        console.log("initCy2.新建其它计划");
+    }
+    if(currUrl().indexOf(url) > -1 && $('.btn.mw110:contains("新建其他推广单元")').length > 0){
+        $('.btn.mw110:contains("新建其他推广单元")')[0].click();
+        console.log("initCy2.新建其他推广单元");
     }
     return false;
+}
+
+function getParam(paramName) {
+    paramValue = "", isFound = !1;
+    var href = this.location.href;
+    if (href.indexOf("=") > 1) {
+        arrSource = href.substring(href.indexOf("/?") + 2, href.length).split("&");
+        for (var i in arrSource) {
+            var s = arrSource[i];
+            if (s.split("=")[0].toLowerCase() == paramName.toLowerCase()) {
+                return s.split("=")[1];
+            }
+        }
+    }
+    return null;
+}
+
+function findBtn(_title){
+    var btn = null;
+    $('table.table[bx-name="tables"]').find('tr').each(function(){
+        var title = $(this).find('td').find('a[href^="http://"]').text();
+        var index = $.inArray(title, _title);
+        if(index >= 0) {
+            btn = $(this).find('td').find('.btn');
+            //console.log("found................."+btn.text());
+            return false;
+        }
+    });
+    return btn;
+}
+function toTitle(){
+    var btn = findBtn(array);
+    if(btn){
+        return btn[0];
+    }else{
+        if($('.page-next[title="下一页"]').length > 0){
+            $('.page-next[title="下一页"]')[0].click();
+        }else{
+            var url = "https://zuanshi.taobao.com/indexbp.jsp#!/crab/index?campaignModel=4&tab=unit&campaignId="+getParam("campaignId");
+            console.log("找不到了"+url);
+            window.location.href = url;
+            //https://zuanshi.taobao.com/indexbp.jsp#!/crab/index?campaignId=367223175&campaignModel=4&tab=unit
+        }
+    }
 }
 
 function init() {
     console.log("---->"+currUrl());
     window.setTimeout("init()", 2000);
-
-    $('.input.w200').trigger('focus');
-    $('.input.w200').val("兼容nerf热火枪电动连发软弹枪国产stf死拽夫改装可发射器玩具枪");
-    $('.input.w200').trigger('blur');
-    $('.input.w200').trigger('focus');
-    $('.input.w200').trigger('mx-keyup');
-
-    return;
     if(init_addBtn()) return;
     if(initClose()) return;
     if(initSetp()) return;
     if(initSelectOne()) return;
     if(initSetUnit()) return;
     if(initCy()) return;
-    if(initCy()) return;
+    if(initCy2()) return;
 }
 
 window.setTimeout("init()", 2000);
