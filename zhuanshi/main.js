@@ -10,19 +10,14 @@
 }
 function initClose(){
     var url = "/main/index";
-    if(currUrl().indexOf(url) > -1 && $('.modal-open').length >0){
-        // 关闭草稿按钮
-        if($(".link-blue").length >0){
-            $(".link-blue:contains('删除')")[0].click();
-            $(".dialog-ext-close")[0].click();
-        }else{
-            console.log('initClose no found');
-        }
+    if(currUrl().indexOf(url) > -1 && $('.modal-open').length >0 && $(".link-blue").length >0){
+        $(".link-blue:contains('删除')")[0].click();
+        $(".dialog-ext-close")[0].click();
     }
     return false;
 }
 function initSelectOne(){
-    var url = "/main/index";
+    var url = "step=2";
     if(currUrl().indexOf(url) > -1){
         // 填写第一步
         if($("input[name='solution']").length > 0){
@@ -33,10 +28,7 @@ function initSelectOne(){
                 }
             });
             if($("#dayBudgetInput").length > 0){
-                $("#dayBudgetInput").trigger('focus');
-                $("#dayBudgetInput").val('300');
-                $("#dayBudgetInput").trigger('blur');
-                $("#dayBudgetInput").trigger('focus');
+                setVal($("#dayBudgetInput"),'300');
             }
             if($(".btn.btn-blue.mr20:contains('下一步，设置推广单元')").length > 0){
                 $(".btn.btn-blue.mr20:contains('下一步，设置推广单元')")[0].click();
@@ -102,9 +94,7 @@ function initSetUnit_6(){   //扩展定向
         var prices = $(".key-result-box.key-result-box-cpc.key-result-selected").find('.input[data-valid-lazy="item-price"]');
         if(prices.length > 0){
             prices.each(function(){
-                $(this).trigger('focus');
-                $(this).val('0.12');
-                $(this).trigger('blur');
+                setVal($(this),'0.12');
             });
             $('.btn.btn-blue.mw66.mr10').each(function(){
                 this.click();
@@ -130,9 +120,7 @@ function initSetUnit_5(){   //智能定向-购物意图定向
         $('.fr.color-blue:contains("全部添加")')[0].click();
         if($('.input[data-valid-lazy="item-price"]').length > 0){
             $('.input[data-valid-lazy="item-price"]').each(function(){
-                $(this).trigger('focus');
-                $(this).val('10');
-                $(this).trigger('blur');
+                setVal($(this),'10');
             });
             $('.btn.btn-blue.mw66.mr10').each(function(){
                 this.click();
@@ -148,9 +136,7 @@ function initSetUnit_4(){
     var ret = true;
     if($('.modal-open').length == 0 && $('.input.input-small[id*="targetType"]').length > 0){
         $('.input.input-small[id*="targetType"]').each(function(){
-            $(this).trigger('focus');
-            $(this).val('1');
-            $(this).trigger('blur');
+            setVal($(this),'1');
             ret = false;
             console.log('initSetUnit_4');
         });
@@ -161,9 +147,7 @@ function initSetUnit_3(){
     var ret = true;
     if($('input[mx-change$="getSuggestPv"][mx-change^="vf_item_unit_target"]').length > 0){
         $('input[mx-change$="getSuggestPv"][mx-change^="vf_item_unit_target"]').each(function(){
-            $(this).trigger('focus');
-            $(this).val('0.12');
-            $(this).trigger('blur');
+            setVal($(this),'0.12');
             ret = false;
             console.log('initSetUnit_3');
             return false;
@@ -171,6 +155,7 @@ function initSetUnit_3(){
     }
     return ret;
 }
+
 function initSetUnit_2(){
     var ret = true;
     var obj = null;
@@ -188,36 +173,31 @@ function initSetUnit_2(){
     }
     return ret;
 }
+
 function initSetUnit_1(){
     var ret = false;
     return ret;
 }
+
 var i1 = true,i2 = true,i3 = true,i4 = true,i5 = true,i6 = true,i7 = true;
 function initSetUnit_8(){
     $('.btn.btn-blue.mr20:contains("下一步，上传创意")').each(function(){
-        console.log("initSetUnit...");
         i1 = true;i2 = true;i3 = true;i4 = true;i5 = true;i6 = true;i7 = true;
         this.click();
     });
 }
+
 function initSetUnit(){
     //填写第二步
     var url = 'step=3';
     if(currUrl().indexOf(url) > -1){
-        if(i1&&initSetUnit_1()) {console.log('initSetUnit_1.stop');return false}else{i1=false};
-        if(i1)return false;
-        if(i2&&initSetUnit_2()) {console.log('initSetUnit_2.stop');return false}else{i2=false};
-        if(i2)return false;
-        if(i3&&initSetUnit_3()) {console.log('initSetUnit_3.stop');return false}else{i3=false};
-        if(i3)return false;
-        if(i4&&initSetUnit_4()) {console.log('initSetUnit_4.stop');return false}else{i4=false};
-        if(i4)return false;
-        if(i5&&initSetUnit_5()) {console.log('initSetUnit_5.stop');return false}else{i5=false};
-        if(i5)return false;
-        if(i6&&initSetUnit_6()) {console.log('initSetUnit_6.stop');return false}else{i6=false};
-        if(i6)return false;
-        if(i7&&initSetUnit_7()) {console.log('initSetUnit_7.stop');return false}else{i7=false};;
-        if(i7)return false;
+        if(i1 && (i1 = initSetUnit_1())) {console.log('initSetUnit_1.stop');return false;}
+        if(i2 && (i2 = initSetUnit_2())) {console.log('initSetUnit_2.stop');return false;}
+        if(i3 && (i3 = initSetUnit_3())) {console.log('initSetUnit_3.stop');return false;}
+        if(i4 && (i4 = initSetUnit_4())) {console.log('initSetUnit_4.stop');return false;}
+        if(i5 && (i5 = initSetUnit_5())) {console.log('initSetUnit_5.stop');return false;}
+        if(i6 && (i6 = initSetUnit_6())) {console.log('initSetUnit_6.stop');return false;}
+        if(i7 && (i7 = initSetUnit_7())) {console.log('initSetUnit_7.stop');return false;}
         initSetUnit_8();
     }
     return false;
@@ -235,6 +215,7 @@ function initCy(){
     }
     return false;
 }
+
 function initCy2(){
     var url = 'step=5';
     if(currUrl().indexOf(url) > -1 && $('.btn.mw110:contains("新建其它计划")').length > 0){
@@ -295,6 +276,7 @@ function toTitle(){
 function init() {
     console.log("---->"+currUrl());
     window.setTimeout("init()", 2000);
+    if(blur) return;
     if(init_addBtn()) return;
     if(initClose()) return;
     if(initSetp()) return;
@@ -309,3 +291,18 @@ window.setTimeout("init()", 2000);
 function currUrl(){
     return window.location.href;
 }
+
+function setVal(obj,val){
+    obj.trigger('focus').val(val).trigger('change').trigger('blur');
+}
+var blur = false;
+
+$(window).blur(function(){
+    blur = true;
+    console.log('window blur');
+});
+$(window).focus(function(){
+    blur = false;
+    //your code here
+    console.log('window focus');
+});
