@@ -13,5 +13,7 @@
 "matches":["http://*/*","https://*/*"],
 "js":["public.js","main.js"],
 "run_at":"document_end"
-}]
+}],
+"options_page": "options.html",
+"background": {"scripts": ["background.js"]}
 }
