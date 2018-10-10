@@ -42,6 +42,7 @@ function arrayToTable(json) {
         var obj = json[j];
         var suv = parseFloat(obj['seIpvUvHits']);
         var onlineGoodsCnt = parseFloat(obj['onlineGoodsCnt']);
+        onlineGoodsCnt = onlineGoodsCnt == 0? 0.1 : onlineGoodsCnt;
         var clickRate = parseFloat(obj['clickRate']);
         var payConvRate = parseFloat(obj['payConvRate']);
         var jzd = suv / onlineGoodsCnt * 100;
@@ -65,8 +66,8 @@ function arrayToTable(json) {
                 output += '<td title="' + tableHs[d] + '">' + htmlEncode(obj[d]) + '</td>';
             }
         }
-        output += '<td>' + jzd + '</td>';
-        output += '<td>' + jzd2 + '</td>';
+        output += '<td>' + jzd.toFixed(6) + '</td>';
+        output += '<td>' + jzd2.toFixed(6) + '</td>';
         output += '</tr>';
     }
     output += '</tbody>';

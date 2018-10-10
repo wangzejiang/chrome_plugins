@@ -22,13 +22,13 @@ function toUrl(url){
 	//window.open(url, "_blank", "alwaysLowered=yes,alwaysRaised=no,z-look=no");
 }
 function init2(){
-	//console.log(options.test);
-	if(options.test == false){
-		window.setTimeout('init2()',1000);
-		return;
-	}
 	var str = "getActivityList";
 	if(window.location.href.indexOf(str) > -1){
+		//console.log(options.test);
+		if(options.test == false){
+			window.setTimeout('init2()',1000);
+			return;
+		}
 		var flag = true;
 		$('.try-item').each(function(){
 			var o = $(this);
