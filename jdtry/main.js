@@ -33,7 +33,7 @@ function init2(){
 		$('.try-item').each(function(){
 			var o = $(this);
 			var str = o.find('.try-button').text().trim();console.log(str);
-			if('已申请'!=str && '未中选'!=str){
+			if('已申请'!=str && '未中选'!=str && '中选'!=str){
 				flag = false;
 				var url = o.find('.link').attr('href');console.log(url);
 				toUrl(url);
