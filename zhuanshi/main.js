@@ -286,7 +286,7 @@ function init() {
     if(initCy2()) return;
 }
 
-window.setTimeout("init()", 2000);
+window.setTimeout("init()", 1500);
 
 function currUrl(){
     return window.location.href;
