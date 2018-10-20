@@ -58,8 +58,12 @@ function clickrq(){
 	var btn = getBtn('y','clstag','try');
 	if(btn){
 		btn.click();
-		window.setTimeout("close()",600);
+		window.setTimeout("close()",1000);
 	}
+}
+function over(){
+	document.write('<script>window.close();</script>');
+	window.setTimeout("over()",1000);
 }
 function close(){
 	if(window.opener){
@@ -69,10 +73,9 @@ function close(){
 	var btn = getBtn('ui-dialog-close','title','关闭');
 	if(btn){
 		btn.click();
-		document.write('<script>window.close();</script>');
-		document.write('<script>window.close();</script>');
-		document.write('<script>window.close();</script>');
+		over();
 	}
+	window.setTimeout("close()",1000);
 }
 function getBtn(s_class,s_attr,s_click){
 	var btn;
