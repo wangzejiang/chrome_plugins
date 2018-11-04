@@ -39,7 +39,7 @@ function init() {
     input = document.createElement('input');
     input.id = "myActivityPrice";
     input.type = 'text';
-    input.value = '0.5';
+    input.value = '0.475';
     $('.next-btn.next-btn-normal.next-btn-medium').parent().append(input);
     input = document.createElement('input');
     input.type = 'button';
