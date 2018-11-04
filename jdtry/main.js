@@ -1,4 +1,5 @@
-﻿var my_jd_try = null;
+﻿var time = 1500;
+var my_jd_try = null;
 var options = localStorage.options ? JSON.parse(localStorage.options) : {'test':true};
 
 function myrefresh(){
@@ -26,7 +27,7 @@ function init2(){
 	if(window.location.href.indexOf(str) > -1){
 		//console.log(options.test);
 		if(options.test == false){
-			window.setTimeout('init2()',1000);
+			window.setTimeout('init2()',time);
 			return;
 		}
 		var flag = true;
@@ -41,9 +42,9 @@ function init2(){
 			}
 		});
 		if(flag){
-			window.setTimeout('next()',1000);
+			window.setTimeout('next()',time);
 		}else{
-			window.setTimeout('myrefresh()',5000);
+			window.setTimeout('myrefresh()',time * 5);
 		}
 	}
 }
@@ -51,19 +52,20 @@ function init(){
 	var btn = getBtn('app-btn btn-application','clstag','try');
 	if(btn){
 		btn.click();
-		window.setTimeout("clickrq()",600);
+		window.setTimeout("clickrq()",time);
 	}
+	window.setTimeout("close()",time *5);
 }
 function clickrq(){
 	var btn = getBtn('y','clstag','try');
 	if(btn){
 		btn.click();
-		window.setTimeout("close()",1000);
+		window.setTimeout("close()",time);
 	}
 }
 function over(){
 	document.write('<script>window.close();</script>');
-	window.setTimeout("over()",1000);
+	window.setTimeout("over()",time);
 }
 function close(){
 	if(window.opener){
@@ -75,7 +77,7 @@ function close(){
 		btn.click();
 		over();
 	}
-	window.setTimeout("close()",1000);
+	window.setTimeout("close()",time);
 }
 function getBtn(s_class,s_attr,s_click){
 	var btn;
@@ -94,8 +96,8 @@ function getBtn(s_class,s_attr,s_click){
 	return btn;
 }
 
-window.setTimeout("init()",600);
-window.setTimeout("init2()",1000);
+window.setTimeout("init()",time);
+window.setTimeout("init2()",time);
 
 chrome.runtime.onMessage.addListener(
 	function(request, sender, sendResponse){
