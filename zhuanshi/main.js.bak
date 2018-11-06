@@ -204,7 +204,7 @@ var i1 = true,i2 = true,i3 = true,i4 = true,i5 = true,i6 = true,i7 = true,i8=tru
 function initSetUnit_9(){
     $('.btn.btn-blue.mr20:contains("下一步，上传创意")').each(function(){
         i1 = true;i2 = true;i3 = true;i4 = true;i5 = true;i6 = true;i7 = true,i8=true;
-        this.click();
+        //this.click();
     });
 }
 
