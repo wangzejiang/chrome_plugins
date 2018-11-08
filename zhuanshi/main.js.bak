@@ -204,7 +204,7 @@ var i1 = true,i2 = true,i3 = true,i4 = true,i5 = true,i6 = true,i7 = true,i8=tru
 function initSetUnit_9(){
     $('.btn.btn-blue.mr20:contains("下一步，上传创意")').each(function(){
         i1 = true;i2 = true;i3 = true;i4 = true;i5 = true;i6 = true;i7 = true,i8=true;
-        //this.click();
+        this.click();
     });
 }
 
@@ -279,6 +279,25 @@ function findBtn(_title){
     });
     return btn;
 }
+
+function set1(key,value){
+        var curTime = new Date().getTime();
+        localStorage.setItem(key,JSON.stringify({data:value,time:curTime}));
+}
+
+function get1(key,exp){
+		console.log("one....");
+    var data = localStorage.getItem(key);
+    if(data){
+    	var dataObj = JSON.parse(data);
+			console.log("one...."+(new Date().getTime() - dataObj.time<=exp));
+    	if (new Date().getTime() - dataObj.time<=exp) {
+        return dataObj.data;
+    	}
+    }
+    return null;
+}
+
 function toTitle(){
     var btn = findBtn(array);
     if(btn){
@@ -287,6 +306,7 @@ function toTitle(){
         if($('.page-next[title="下一页"]').length > 0){
             $('.page-next[title="下一页"]')[0].click();
         }else{
+        		set1('zz',"000000");
             var url = "https://zuanshi.taobao.com/indexbp.jsp#!/crab/index?campaignModel=4&tab=unit&campaignId="+getParam("campaignId");
             console.log("找不到了"+url);
             window.location.href = url;
@@ -295,10 +315,38 @@ function toTitle(){
     }
 }
 
+function initnext(number,addnum){
+	if(get1('zz',1000*20) == null){
+		console.log("one....");
+		return;
+	}
+  var unit = getParam("tab");
+  if(unit=='unit'){
+  	var ul = $('.plan-list');
+  	var li = ul.find('.plan-list-item-active');
+  	var unitlist = li.find('.unit-list');
+  	if(unitlist.children().length == number){
+  		var next = li.next();
+  		if(next){
+  			var a = next.find('a')[0];
+  			a.click();
+  		}
+  	}
+  	if(unitlist.children().length == (number-addnum)){
+  		var newplan = $('.fl.btn.btn-blue.mr10:contains("新建推广单元")')[0];
+  		if(newplan){
+  			newplan.click();
+  		}
+  	}
+  }
+	return false;
+}
+
 function init() {
     console.log("---->"+currUrl());
     window.setTimeout("init()", 2000);
     if(blur) return;
+    if(initnext(5,2)) return;
     if(init_addBtn()) return;
     if(initClose()) return;
     if(initSetp()) return;
@@ -307,6 +355,9 @@ function init() {
     if(initCy()) return;
     if(initCy2()) return;
 }
+
+
+
 
 window.setTimeout("init()", 1500);
 

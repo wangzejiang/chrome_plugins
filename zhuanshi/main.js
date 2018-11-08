@@ -279,6 +279,23 @@ function findBtn(_title){
     });
     return btn;
 }
+
+function set1(key,value){
+        var curTime = new Date().getTime();
+        localStorage.setItem(key,JSON.stringify({data:value,time:curTime}));
+}
+
+function get1(key,exp){
+    var data = localStorage.getItem(key);
+    if(data){
+    	var dataObj = JSON.parse(data);
+    	if (new Date().getTime() - dataObj.time<=exp) {
+        return dataObj.data;
+    	}
+    }
+    return null;
+}
+
 function toTitle(){
     var btn = findBtn(array);
     if(btn){
@@ -287,6 +304,7 @@ function toTitle(){
         if($('.page-next[title="下一页"]').length > 0){
             $('.page-next[title="下一页"]')[0].click();
         }else{
+        		set1('zz',"000000");
             var url = "https://zuanshi.taobao.com/indexbp.jsp#!/crab/index?campaignModel=4&tab=unit&campaignId="+getParam("campaignId");
             console.log("找不到了"+url);
             window.location.href = url;
@@ -295,10 +313,38 @@ function toTitle(){
     }
 }
 
+function initnext(number,addnum){
+	if(get1('zz',1000*5) == null){
+		console.log("jump....");
+		return;
+	}
+  var unit = getParam("tab");
+  if(unit=='unit'){
+  	var ul = $('.plan-list');
+  	var li = ul.find('.plan-list-item-active');
+  	var unitlist = li.find('.unit-list');
+  	if(unitlist.children().length == number){
+  		var next = li.next();
+  		if(next){set1('zz',"000000");
+  			var a = next.find('a')[0];
+  			a.click();
+  		}
+  	}
+  	if(unitlist.children().length == addnum){
+  		var newplan = $('.fl.btn.btn-blue.mr10:contains("新建推广单元")')[0];
+  		if(newplan){
+  			newplan.click();
+  		}
+  	}
+  }
+	return false;
+}
+
 function init() {
     console.log("---->"+currUrl());
     window.setTimeout("init()", 2000);
     if(blur) return;
+    if(initnext(my_number,my_add_number)) return;
     if(init_addBtn()) return;
     if(initClose()) return;
     if(initSetp()) return;
@@ -307,6 +353,9 @@ function init() {
     if(initCy()) return;
     if(initCy2()) return;
 }
+
+
+
 
 window.setTimeout("init()", 1500);
 
