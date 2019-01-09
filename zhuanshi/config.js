@@ -1,7 +1,6 @@
 ﻿var array = [
-"钢将m24狙击模型刚干枪抛壳拉栓魔改成人可发射水弹绝地求生8倍镜",
-"绝地求生Kar98k水弹15可发射吃鸡狙击抢九八k配8倍镜男抛壳玩具枪"
+"吃鸡awm8倍镜98k狙击枪玩具可发射套装抛壳大号模型求生水弹抢24"
 ];
 
-var my_number = 5;
-var my_add_number = 3;
+var my_jump_number = 4;
+var my_new_number = 3;

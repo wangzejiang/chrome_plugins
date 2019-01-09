@@ -344,7 +344,7 @@ function init() {
     console.log("---->"+currUrl());
     window.setTimeout("init()", 2000);
     if(blur) return;
-    if(initnext(my_number,my_add_number)) return;
+    if(initnext(my_jump_number,my_new_number )) return;
     if(init_addBtn()) return;
     if(initClose()) return;
     if(initSetp()) return;

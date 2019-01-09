@@ -9,10 +9,11 @@ function sleep(n) {
 }
 function test(){
   var myActivityPrice = parseFloat($("#myActivityPrice").val());
+  var myActivityPrice2 = parseFloat($("#myActivityPrice2").val());
   $("input[id^='activityPrice']").each(function(){
     var obj = $(this);
     var num = getnum(obj);
-    var price = (num*myActivityPrice).toFixed(2);
+    var price = (num*myActivityPrice+myActivityPrice2).toFixed(2);
     obj.focus();
     obj.val(price);
     obj.blur();
@@ -40,6 +41,11 @@ function init() {
     input.id = "myActivityPrice";
     input.type = 'text';
     input.value = '0.475';
+    $('.next-btn.next-btn-normal.next-btn-medium').parent().append(input);
+    input = document.createElement('input');
+    input.id = "myActivityPrice2";
+    input.type = 'text';
+    input.value = '-2';
     $('.next-btn.next-btn-normal.next-btn-medium').parent().append(input);
     input = document.createElement('input');
     input.type = 'button';

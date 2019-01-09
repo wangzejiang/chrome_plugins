@@ -286,11 +286,9 @@ function set1(key,value){
 }
 
 function get1(key,exp){
-		console.log("one....");
     var data = localStorage.getItem(key);
     if(data){
     	var dataObj = JSON.parse(data);
-			console.log("one...."+(new Date().getTime() - dataObj.time<=exp));
     	if (new Date().getTime() - dataObj.time<=exp) {
         return dataObj.data;
     	}
@@ -316,8 +314,8 @@ function toTitle(){
 }
 
 function initnext(number,addnum){
-	if(get1('zz',1000*20) == null){
-		console.log("one....");
+	if(get1('zz',1000*5) == null){
+		console.log("jump....");
 		return;
 	}
   var unit = getParam("tab");
@@ -327,12 +325,12 @@ function initnext(number,addnum){
   	var unitlist = li.find('.unit-list');
   	if(unitlist.children().length == number){
   		var next = li.next();
-  		if(next){
+  		if(next){set1('zz',"000000");
   			var a = next.find('a')[0];
   			a.click();
   		}
   	}
-  	if(unitlist.children().length == (number-addnum)){
+  	if(unitlist.children().length == addnum){
   		var newplan = $('.fl.btn.btn-blue.mr10:contains("新建推广单元")')[0];
   		if(newplan){
   			newplan.click();
@@ -346,7 +344,7 @@ function init() {
     console.log("---->"+currUrl());
     window.setTimeout("init()", 2000);
     if(blur) return;
-    if(initnext(5,2)) return;
+    if(initnext(my_jump_number,my_new_number)) return;
     if(init_addBtn()) return;
     if(initClose()) return;
     if(initSetp()) return;
