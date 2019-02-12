@@ -44,6 +44,7 @@ function clickrq(){
 			}
 		}
 	}
+	window.setTimeout("alert('over')",2000*g);
 }
 var sex = new Array("\u5973\u000d\u000a","\u7537\u000d\u000a");
 
