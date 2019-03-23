@@ -1,8 +1,8 @@
 {
-"name":"xiaojiang",
+"name":"skuimg",
 "version":"0.1",
 "manifest_version":2,
-"description":"xiaojiang",
+"description":"skuimg",
 "icons":{
 "128":"ico.png",
 "16":"ico.png",
@@ -11,7 +11,7 @@
 "permissions":["http://*/*","https://*/*"],
 "content_scripts":[{
 "matches":["http://*/*","https://*/*"],
-"js":["public.js","main.js","jq.js","main2.js","main3.js"],
+"js":["jq.js","main.js"],
 "run_at":"document_end"
 }]
 }
