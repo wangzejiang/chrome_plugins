@@ -1,5 +1,5 @@
 function init2(){
-	console.log("zejiang init word");
+	//console.log("zejiang init word");
 	if($('.cp.keyword-text').length==0){
 		window.setTimeout("init2()",1000);
 		return;

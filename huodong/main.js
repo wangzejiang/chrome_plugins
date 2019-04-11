@@ -56,7 +56,7 @@ function init() {
     }, false);
     $('.next-btn.next-btn-normal.next-btn-medium').parent().append(input);
   }else{
-    console.log('..................');
+    //console.log('..................');
     window.setTimeout("init()", 1000);
   }
 }

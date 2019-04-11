@@ -23,6 +23,6 @@ function initi() {
 	input.id = "zejiangxiao";
 	input.onclick = cccc;
 	frame.find(".m11-setprice-btns").append(input);
-	console.log("111....."+frame.length);
+	//console.log("111....."+frame.length);
 }
 window.setTimeout("initi()", 1000);

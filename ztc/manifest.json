@@ -11,7 +11,7 @@
 "permissions":["http://*/*","https://*/*"],
 "content_scripts":[{
 "matches":["http://*/*","https://*/*"],
-"js":["public.js","main.js","jq.js","main2.js","main3.js"],
+"js":["public.js","jq.js","main.js","main1.js","main2.js","main3.js"],
 "run_at":"document_end"
 }]
 }

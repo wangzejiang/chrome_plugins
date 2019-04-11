@@ -1,6 +1,6 @@
 function init3(){
 	var mx = getMx("J_mx_","_cost_");
-	console.log("zejiang init3 ren qun-->"+mx.length);
+	//console.log("zejiang init3 ren qun-->"+mx.length);
 	if(mx.length==0){
 		window.setTimeout("init3()",1000);
 		return;
@@ -56,7 +56,7 @@ function getTransactionshippingtotal3(id){
 function val23(val){
 	var text = val.replace("\uffe5","").replace("-","").replace(",","").trim();
 	if(""==text)return parseFloat(0);
-	console.log("zejiang -->"+text);
+	//console.log("zejiang -->"+text);
 	return parseFloat(text);
 }
 window.setTimeout("init3()",1000);

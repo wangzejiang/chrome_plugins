@@ -1,3 +1,4 @@
+/*
 function init(){
 	console.log('zejiang init...');
 	var btn = getBtn('btn','mx-click','addCrowd');
@@ -76,4 +77,5 @@ function clicksub(i,j,k){
 	document.getElementById('J_subTag_100001_'+j).click();
 	document.getElementById('J_subTag_100002_'+k).click();
 }
-window.setTimeout("init()",5000);
+//window.setTimeout("init()",5000);
+*/
