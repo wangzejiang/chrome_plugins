@@ -20,7 +20,7 @@ function createInput1(){
 function addTest1(){
 	var g = 1;
 	for(var i=0;i<=1;i++){
-		for(var j=1;j<=5;j++){
+		for(var j=3;j<=4;j++){
 			for(var k=0;k<=6;k++){
 				window.setTimeout("clicksub("+i+","+j+","+k+")",5000*g);
 				g++;

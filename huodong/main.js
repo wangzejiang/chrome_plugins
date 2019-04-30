@@ -1,63 +1,24 @@
-var input = null;
-function sleep(n) {
-    var start = new Date().getTime();
-    while (true) {
-        if (new Date().getTime() - start > n) {
-            break;
-        }
-    }
+function dd(){
+	var number = window.prompt("pls input number!","/2");
+	$("input[id^='activityPrice']").each(function(){
+		var price = $(this).parents("td").prev().prev().children().text();
+		var num = eval(price+number);
+		$(this).focus().val(num).blur();
+	});
 }
-function test(){
-  var myActivityPrice = parseFloat($("#myActivityPrice").val());
-  var myActivityPrice2 = parseFloat($("#myActivityPrice2").val());
-  $("input[id^='activityPrice']").each(function(){
-    var obj = $(this);
-    var num = getnum(obj);
-    var price = (num*myActivityPrice+myActivityPrice2).toFixed(2);
-    obj.focus();
-    obj.val(price);
-    obj.blur();
-    sleep(100);
-  });
-
+function inithuodong() {
+window.setTimeout("inithuodong()", 1000);
+var host = window.location.host;
+if('qgch.sale.tmall.com'!=host) return;
+var div = $("#J_FormDetSubmit");
+if(div.length==0) return;
+var btn = $("#zejianghuodong");
+if(btn.length>0) return;
+btn = document.createElement('button');
+btn.id = "zejianghuodong";
+btn.innerHTML = "Hello";
+btn.className = "next-btn next-btn-primary next-btn-medium";
+btn.onclick =dd;
+div.append(btn);
 }
-function test2(){
-  $("input[id^='stock']").each(function(){
-    var obj = $(this);
-    obj.focus();
-    obj.val(10);
-    obj.blur();
-    sleep(100);
-  });
-}
-function getnum(st){
-  var s = st.parents('td').prev().prev().children('div').text();
-  return parseFloat(s);
-}
-function init() {
-  if(input==null && $('.next-btn.next-btn-normal.next-btn-medium').length > 0){
-    $('.next-btn.next-btn-normal.next-btn-medium').parent().append(document.createElement('hr'));
-    input = document.createElement('input');
-    input.id = "myActivityPrice";
-    input.type = 'text';
-    input.value = '0.475';
-    $('.next-btn.next-btn-normal.next-btn-medium').parent().append(input);
-    input = document.createElement('input');
-    input.id = "myActivityPrice2";
-    input.type = 'text';
-    input.value = '-2';
-    $('.next-btn.next-btn-normal.next-btn-medium').parent().append(input);
-    input = document.createElement('input');
-    input.type = 'button';
-    input.value = 'open'
-    input.addEventListener("click", function(ev) {
-      test();
-      //test2();
-    }, false);
-    $('.next-btn.next-btn-normal.next-btn-medium').parent().append(input);
-  }else{
-    //console.log('..................');
-    window.setTimeout("init()", 1000);
-  }
-}
-window.setTimeout("init()", 1000);
+window.setTimeout("inithuodong()", 2000);

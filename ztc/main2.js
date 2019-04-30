@@ -20,7 +20,7 @@ function init2(){
 	if($('#zejiang_avg').length>0){
 		$('#zejiang_avg').text(avg);
 	}else{
-		$('.keyword-text').children(":first").append("<font id='zejiang_avg'>"+avg+"</font>");
+		$('.gray-dark').eq(0).append("<font id='zejiang_avg' color='red'>"+avg+"</font>");
 	}
 
 	$('.cp.keyword-text').each(function(){
@@ -33,7 +33,7 @@ function init2(){
 		var rs =  cost/ total;
 		rs = rs.toFixed(2);
 		rs = total==0? cost : rs;
-		var color = total==0?'blue':(rs >=avg? 'red' : 'green');
+		var color = rs >=avg? 'red' : (total==0?'blue':'green');
 		if($('#'+newid).length>0){
 			$('#'+newid).val(rs);
 			$('#'+newid).attr('color',color);
