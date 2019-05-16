@@ -27,6 +27,7 @@ function initimg(){
 	var img = $("img[alt='\u5546\u54c1\u9884\u89c8\u56fe']");
 	img.each(function(){
 		var url = $(this).attr('src');
+		if(url=='undefound') return true;
 		var li = createLi("",url,"m"+idd++);
 		ul2.append(li);
 	});
