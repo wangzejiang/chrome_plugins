@@ -1,5 +1,10 @@
 function initimg(){
 	console.log('zejiang init...');
+	// show sku
+	var ul3 = $("ul[data-property='\u5957\u9910\u7c7b\u578b']");
+	ul3.find('li').attr("style","");
+	var ul4 = $("ul[data-property='\u989c\u8272\u5206\u7c7b']");
+	ul4.find('li').attr("style","");
 	// down sku
 	var ul = $("ul[data-property='\u989c\u8272\u5206\u7c7b']");
 	var ul2 = ul.clone();
@@ -17,11 +22,6 @@ function initimg(){
 		var li = createLi(title,style,iddd++);
 		ul2.append(li);
 	});
-	// show sku
-	var ul3 = $("ul[data-property='\u5957\u9910\u7c7b\u578b']");
-	ul3.find('li').attr("style","");
-	var ul4 = $("ul[data-property='\u989c\u8272\u5206\u7c7b']");
-	ul4.find('li').attr("style","");
 	// down main img
 	var idd = 1;
 	var img = $("img[alt='\u5546\u54c1\u9884\u89c8\u56fe']");
