@@ -1,4 +1,4 @@
-function cccJHS(){
+function clickJHS(){
 	var flag = isFlag();
 	console.log("flag:"+flag);
 	var str = flag?"td:eq(2)":"td:eq(1)";
@@ -23,6 +23,7 @@ function cccJHS(){
 		var price_float = parseFloat(price) / 2;
 		input.focus().val(price_float).blur();
 	});
+	window.setTimeout("initJHSERROR()", 1000);
 }
 function isFlag(){
 	return $("span:contains('\u5957\u9910\u7c7b\u578b\uff1a')").length>0 || $("span:contains('\u5927\u5c0f\uff1a')").length>0;
@@ -47,17 +48,13 @@ function initJHSERROR(){
 	window.setTimeout("initJHSERROR()", 1000);
 	console.log("initJHSERROR");
 	var div = $(".next-dialog.right.next-overlay-inner");
-	console.log("div"+div.length);
 	if(div.length==0)return;
 	var div2 = div.find(".next-feedback-title");
-	console.log("div2"+div2.length);
 	if(div2.length==0)return;
 	var str = div2.text();
 	var map = getArray(str);
-	console.log("map"+map.size());
 	if(map.size()==0) return;
 	var btn = div.find('.next-btn.next-btn-primary.next-btn-medium');
-	console.log("btn"+btn.length);
 	if(btn.length==0)return;
 	btn.click();
 	var flag = isFlag();
@@ -76,22 +73,21 @@ function initJHSERROR(){
 		console.log("sku:"+sku+",price:"+price);
 	});
 }
+var JHS=true;
 function initJHS() {
-	window.setTimeout("initJHS()", 1000);
+	if(JHS)window.setTimeout("initJHS()", 1000);
 	var div = $(".next-overlay-wrapper.next-dialog-wrapper.opened");
 	if(div.length == 0)return;
 	var div2 = div.find('.next-dialog-footer');
 	if(div2.length == 0)return;
-	
 	if(div2.find("#zejiangJHS").length > 0) return;
 	var btn = document.createElement("button");
 	btn.className="next-btn next-btn-normal next-btn-medium";
 	btn.type="button";
 	btn.innerHTML = "JHS";
 	btn.id = "zejiangJHS";
-	btn.onclick = cccJHS;
+	btn.onclick = clickJHS;
 	div2.append(btn);
-	console.log("initJHS over...");
+	JHS=false;
 }
 window.setTimeout("initJHS()", 1000);
-window.setTimeout("initJHSERROR()", 1000);
