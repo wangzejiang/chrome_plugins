@@ -1,0 +1,17 @@
+{
+"name":"sendYHJ",
+"version":"0.1",
+"manifest_version":2,
+"description":"sendYHJ",
+"icons":{
+"128":"ico.png",
+"16":"ico.png",
+"48":"ico.png"
+},
+"permissions":["http://*/*","https://*/*"],
+"content_scripts":[{
+"matches":["http://*/*","https://*/*"],
+"js":["jq.js","main.js"],
+"run_at":"document_end"
+}]
+}

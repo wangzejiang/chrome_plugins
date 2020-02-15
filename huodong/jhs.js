@@ -20,11 +20,12 @@ function clickJHS(){
 		var input = $(this);
 		var price_td = input.parents("tr").children(str);
 		var price = price_td.text()=='/'?price_td.prev().text():price_td.text();
-		var price_float = parseFloat(price) / 2;
+		var price_float = parseFloat(price)*0.469;
+		price_float = price_float.toFixed(0);
 		input.focus().val(price_float).blur();
 	});
-	window.setTimeout("initJHSERROR()", 1000);
 }
+window.setTimeout("initJHSERROR()", 1000);
 function isFlag(){
 	return $("span:contains('\u5957\u9910\u7c7b\u578b\uff1a')").length>0 || $("span:contains('\u5927\u5c0f\uff1a')").length>0;
 }
@@ -44,9 +45,29 @@ function getArray(str1){
 	}
 	return map;
 }
+function setTableNew(){
+	if(JHSDD){
+	var trs = $("input[id^='activityPrice']").eq(0).parents("tbody").children();
+	trs.each(function(){
+		var tr = $(this);
+		var rowspan = tr.children('td:eq(0)').attr('rowspan');
+		if(rowspan != 1){
+			tr.children('td:eq(0)').attr('rowspan','1');
+			tdhtml = tr.children('td:eq(0)').html();
+		}else if(tdhtml !=null){
+			var td = document.createElement("td");
+			td.innerHTML = tdhtml;
+			tr.prepend(td);
+			JHSDD = false;
+		}
+	});
+	}
+}
+var JHSDD = true;
 function initJHSERROR(){
 	window.setTimeout("initJHSERROR()", 1000);
 	console.log("initJHSERROR");
+	setTableNew();
 	var div = $(".next-dialog.right.next-overlay-inner");
 	if(div.length==0)return;
 	var div2 = div.find(".next-feedback-title");
@@ -67,10 +88,11 @@ function initJHSERROR(){
 		}else{
 			sku = tr.children("td:eq(0)").text();	
 		}
-		if(sku==null) return;
+		if(sku==null) return true;
 		var price = map.get(sku);
+		if(price==null) return true;
 		input.focus().val(price).blur();
-		console.log("sku:"+sku+",price:"+price);
+		console.log("----->sku:"+sku+",price:"+price);
 	});
 }
 var JHS=true;
